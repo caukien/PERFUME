@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="../public/stylesheet/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/hellohello.js"></script>
+</head>
+<body>
+    <section class="header">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="https://seeklogo.com/images/D/Dior-logo-DCBB4CC069-seeklogo.com.png" class="img-fluid" alt="logo dior" height="70px" width="175px">
+                </div>
+                
+                <div class="col-md-4 ">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Từ khóa tìm kiếm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="fs-3 ">
+                                        <i class="fa-solid fa-phone-volume"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">Tư vấn<br>
+                                    <strong>0354303510</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="fs-3">
+                                        <i class="fa-regular fa-circle-user"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <strong><a href="/registerpage" style="text-decoration: none; color: black;">Đăng ký</a></strong>
+                                    <br>
+                                    <strong><a href="/loginpage" style="text-decoration: none; color: black;">Đăng nhập</a></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" class="position-relative">
+                                <span class="fs-3"><i class="fa-regular fa-heart text-black"></i> </span>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0
+                                    <span class="visually-hidden">unread message</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="position-relative">
+                                <span class="fs-3"><i class="fa-solid fa-cart-shopping text-black"></i></span>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0
+                                    <span class="visually-hidden">unread message</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="position-relative">
+                                <span class="fs-3"><i class="fa-solid fa-truck text-black"></i></span>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0
+                                    <span class="visually-hidden">unread message</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>     
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- endheader -->
+    <section class="mainmenu bg-secondary bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 py-3"></div>
+                <div class="col-md-10">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                        <div class="container-fluid">
+                            <!-- <a class="navbar-brand" href="#">Navbar</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button> -->
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <b><a class="nav-link active" aria-current="page" href="/">Trang Chủ</a></b>
+                                    </li>
+                                    <li class="nav-item">
+                                        <b><a class="nav-link" href="#">Giới Thiệu</a></b>
+                                    </li>
+                                    <b>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sản Phẩm
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">J'adore</a></li>
+                                        <li><a class="dropdown-item" href="#">Miss Dior</a></li>
+                                        <li><a class="dropdown-item" href="#">Sauvage</a></li>
+                                        <li><a class="dropdown-item" href="#">Poison</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Something else</a></li>
+                                        </ul>
+                                    </li>
+                                    </b>
+                                    <li class="nav-item">
+                                        <b><a class="nav-link" href="#">Tin Tức</a></b>
+                                    </li>
+                                    <li class="nav-item">
+                                        <b><a class="nav-link "href="#">Tuyển Dụng</a></b>
+                                    </li>
+                                    <!-- <li class="nav-item">
+                                        <b><a class="nav-link disabled" aria-disabled="true">Liên Hệ</a></b>
+                                    </li> -->
+                                    <b>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch Vụ
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">MAKEUP</a></li>
+                                        <li><a class="dropdown-item" href="#">SKINCARE</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </li>
+                                    </b>
+                                    <li class="nav-item">
+                                        <b><a class="nav-link " href="#">Men's Fragrance</a></b>
+                                    </li>
+                                    <li class="nav-item">
+                                        <b><a class="nav-link " href="#">Women's Fragrance</a></b>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                        </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="maincontent my-3">
+        <div class="container">
+            <div class="slider">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Library-Sites-DiorSharedLibrary/default/dwbc03f309/images/beauty/discovery-pages/fragrance/MDEDP2021/MissDiorEDP1440x616.jpg?sw=1440" class="d-block w-100" alt="slide image">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://the-fragrance-shop.imgix.net/banners/dior-xmas-2023-1074x656.jpg?w=1200&q=35&dpr=2" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://theperfume.vn/wp-content/uploads/2016/09/dior-women-banner-1600x900.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
+                <div class="row">
+                    <!-- Lấy dữ liệu -->
+                    <div class="col-lg-9">
+                        <% if(data !=''){%>
+                            <% data.forEach(element => {  %>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+                                            <div class="card w-100 my-2 shadow-2-strong">
+                                                <img src="http://localhost:3000/<%= element.image %>" class="card-img-top" />
+                                                    <div class="card-body d-flex flex-column">
+                                                        <div class="d-flex flex-row">
+                                                            <h5 class="mb-1 me-1"><%= element.name %></h5>
+                                                        </div>
+                                                        <p class="card-text"><%= element.price %></p>
+                                                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                                                            <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+                                                            <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                        <% }else{ %>
+                        <h1 class="">Không có dữ liệu</h1>
+                    <%  } %>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section class="footer bg-dark bg-gradient text-white p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4 class="fs-5">FIND A BOUTIQUE</h4>
+                    <ul style="list-style: none">
+                        <li><a href="#" style="text-decoration: none ; color: white">Parfums Christian Dior Boutiques</a></li>
+                        <li><a href="#" style="text-decoration: none ; color: white">Christian Dior Couture Boutiques</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="fs-5">CLIENT SERVICES</h4>
+                    <ul style="list-style: none">
+                        <li><a href="#" style="text-decoration: none ; color: white">Contact</a></li>
+                        <li><a href="#" style="text-decoration: none ; color: white">FAQ</a></li>
+                        <li><a href="#" style="text-decoration: none ; color: white">Parfums Christian Dior</a></li>
+                        <li><a href="#" style="text-decoration: none ; color: white">Christian Dior Couture</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="fs-5">THE HOUSE OF DIOR</h4>
+                    <ul>
+                        <li><a href="#">To only leave beauty as a legacy</a></li>
+                        <li><a href="#">Legal Terms and Conditions</a></li>
+                        <li><a href="#">Data Protection</a></li>
+                        <li><a href="#">Personalize my choices</a></li>
+                        <li><a href="#">Ethics & compliance</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Site map</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="fs-5">FOLLOW US</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Snapchat</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row"></div>
+            <div class="row"></div>
+        </div>
+    </section>
+    <section class="header"></section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
