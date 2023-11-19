@@ -14,10 +14,11 @@ const proRoute = require("./routers/productRoute.js");
 const cartRoute = require('./routers/cartRoute.js');
 const orderRoute = require('./routers/orderRoute.js');
 const orderDetailRoute = require('./routers/orderDetailRoute.js');
+const path = require('path');
 dotenv.config();
 
 // app.use(exLayout)
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 // app.set('layout', './admin/home')
 app.set("view engine", "ejs");
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/image', express.static('image'));
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(userRoute);
 app.use(authorRouter);

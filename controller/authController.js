@@ -87,8 +87,8 @@ exports.authController = {
             // res.render("../views/admin/home",{userid: check});
             // res.send("Pass")
             if(check.isAdmin === true){
-              req.session.isAdmin = true;
-              req.session.userId = check._id;
+              // req.session.isAdmin = true;
+              // req.session.userId = check._id;
               res.render("../views/admin/home",{userid: check});
             }else{
               return res.send('Quay ra đi bạn')
