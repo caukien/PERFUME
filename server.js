@@ -34,7 +34,7 @@ app.use(authorRouter);
 app.use(cateRoute);
 // app.use("/pro", proRoute);
 app.use(proRoute);
-app.use('/cart', cartRoute);
+app.use(cartRoute);
 app.use('/order', orderRoute);
 app.use('/orderdetail', orderDetailRoute);
 
@@ -45,10 +45,10 @@ app.get('/admin', (req, res) => {
     // return res.status(234).send('QUAY LAI DE BAN EI')
     res.render('../views/admin/login')
 })
-// app.get('/index', (req, res) => {
+// app.get('*', (req, res) => {
 //     console.log(req);
 //     // return res.status(234).send('QUAY LAI DE BAN EI')
-//     res.render('../views/client/index')
+//     res.redirect('../views/client/index')
 // })
 
 

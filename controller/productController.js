@@ -7,13 +7,62 @@ const fs = require('fs');
 exports.productController = {
     get2homepage: async(req, res) =>{
         try {
-            const list = await Product.find();
+            const randomSkip = Math.floor(Math.random() * 0.9);
+            const list = await Product.aggregate([
+                { $sample: { size: 4 } }, // Lấy ngẫu nhiên 10 bản ghi
+                { $skip: randomSkip }, // Bắt đầu từ vị trí ngẫu nhiên được tạo
+            ]);
             // return res.json(list)
             res.render("../views/client/index", {
                 data: list
             })
         } catch (error) {
             return res.send(error)
+        }
+    },
+    get2Product: async(req, res) =>{
+        try {
+            let perPage = 4;
+            let page = req.query.page || 1;
+            const count = await Product.countDocuments({});
+            const products = await Product.find().skip(perPage * page - perPage)
+                                                .limit(perPage)
+                                                .exec();
+            const catelist = await Cates.find();
+            // if(!products){
+            //     res.status(400).json({message: "Không có sản phẩm" });
+            //     return;
+            // }
+            // res.status(200).json(products);
+            res.render("../views/client/product", {
+                data: products,
+                catelist: catelist,
+                current: page, 
+                // totalPages,
+                pages: Math.ceil(count / perPage),
+            });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    },
+    get2ProductId: async(req, res) =>{
+        try {
+            const product = await Product.findById(req.params.id);
+            const randomSkip = Math.floor(Math.random() * 0.9);
+            const list = await Product.aggregate([
+                { $sample: { size: 8 } }, // Lấy ngẫu nhiên 8 bản ghi
+                { $skip: randomSkip }, // Bắt đầu từ vị trí ngẫu nhiên được tạo
+            ]);
+            if (!product) {
+                res.status(404).json({ message: 'Sản phẩm không tồn tại' });
+            } else {
+                res.render("../views/client/product-detail", {
+                    data: product,
+                    related: list
+                });
+            }
+        } catch (error) {
+            res.status(400).json({ error: error.message });
         }
     },
     getProduct: async(req, res) =>{
@@ -26,7 +75,7 @@ exports.productController = {
             //     .skip((pageNumber - 1) * pageSize)
             //     .limit(pageSize)
             //     .exec();
-            let perPage = 2;
+            let perPage = 5;
             let page = req.query.page || 1;
             const count = await Product.countDocuments({});
             const products = await Product.find().populate("cateid", ['name'])
@@ -54,7 +103,9 @@ exports.productController = {
             if (!product) {
                 res.status(404).json({ message: 'Sản phẩm không tồn tại' });
             } else {
-                res.status(200).json(product);
+                res.render("../views/client/product-detail", {
+                    data: product
+                });
             }
         } catch (error) {
             res.status(400).json({ error: error.message });

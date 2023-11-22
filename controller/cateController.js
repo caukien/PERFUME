@@ -70,7 +70,6 @@ exports.cateController = {
             }else{
                 res.redirect('/getcate');
             }
-            res.send(item);
         } catch (error) {
             res.status(500).json(error);
         }

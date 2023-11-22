@@ -53,7 +53,9 @@
                           <td><%= element.price.toLocaleString() %></td>
                           <td><%= element.cateid.name %></td>
                           <td><%= element.qty %></td>
-                          <td style="overflow: hidden;"><%= element.des %></td>
+                          <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <%= element.des %>
+                          </td>
                           <td class="text-end">
                 
                             <div class="d-flex flex-row justify-content-end gap-2">

@@ -21,8 +21,8 @@ exports.cartController = {
     // Phương thức: Lấy tất cả các mục giỏ hàng
     getCart: async(req, res) =>{
         try {
-            const cartItems = await Cart.find();
-            res.status(200).json(cartItems);
+            // const cartItems = await Cart.find();
+            res.render("../views/client/cart");
         } catch (error) {
             res.status(400).json({ error: error.message });
         }

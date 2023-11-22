@@ -19,10 +19,12 @@ routes.put('/updateproduct/:id', upload.single('image'), productController.updat
 // Phương thức: Xóa sản phẩm bằng ID
 routes.delete('/deleteproduct/:id', productController.deleteProduct);
 
-//Get page
+//Get page for admin
 routes.get('/createproduct', productController.createproduct)
 routes.get('/modifyproduct/:id', productController.modifyProduct)
+//Get page for client
 routes.get('/index', productController.get2homepage)
-
+routes.get('/product', productController.get2Product);
+routes.get('/product/:id', productController.get2ProductId);
 
 module.exports = routes;

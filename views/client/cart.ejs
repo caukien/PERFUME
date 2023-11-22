@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products | RedStore</title>
+    <link rel="stylesheet" href="client_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('./partials/navbar') %>
+    </div>
+
+    <!-- Cart items details -->
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="images/buy-1.jpg">
+                        <div>
+                            <p>Red Printed T-Shirt</p>
+                            <small>Price: VNĐ 50.00</small>
+                            <br>
+                            <a href="">Remove</a>
+                        </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1" name="qty"></td>
+                <td>VNĐ 50.00</td>
+            </tr>
+        </table>
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td>VNĐ 0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/footer') %>
+
+    <!-- javascript -->
+
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px"
+            }
+            else {
+                MenuItems.style.maxHeight = "0px"
+            }
+        }
+    </script>
+    <!-- Get items in local -->
+    <!-- Đoạn mã trong file cart.ejs -->
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Lấy table để hiển thị danh sách sản phẩm trong giỏ hàng
+            const cartTable = document.querySelector('table');
+            const totalPrice = document.querySelector('.total-price td:last-child');
+
+            function displayCart() {
+                // Xóa hết các sản phẩm đã hiển thị trước đó để cập nhật
+                cartTable.innerHTML = `
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                `;
+
+                let total = 0;
+
+                // Hiển thị các sản phẩm từ Local Storage lên trang
+                cartItems.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>
+                            <div class="cart-info">
+                                <img src="${item.image}">
+                                <div>
+                                    <p>${item.name}</p>
+                                    <small>Price: VNĐ ${item.price.toFixed(2)}</small>
+                                    <br>
+                                    <a href="#" onclick="removeItem('${item.name}')">Remove</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td><input type="number" value="${item.quantity}" name="qty" onchange="updateSubtotal(event, '${item.name}', ${item.price})"></td>
+                        <td>VNĐ ${(item.price * item.quantity).toFixed(2)}</td>
+                        <td><button onclick="removeItem('${item.name}')">Remove</button></td>
+                    `;
+                    cartTable.appendChild(row);
+
+                    total += item.price * item.quantity;
+                });
+
+                // Hiển thị tổng số tiền
+                totalPrice.textContent = `VNĐ ${total.toLocaleString()}`;
+            }
+
+            function removeItem(name) {
+                const updatedCart = cartItems.filter(item => item.name !== name);
+                localStorage.setItem('cart', JSON.stringify(updatedCart));
+                displayCart();
+            }
+
+            function updateSubtotal(event, name, price) {
+                const newQuantity = parseInt(event.target.value);
+                cartItems.forEach(item => {
+                    if (item.name === name) {
+                        item.quantity = newQuantity;
+                    }
+                });
+
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                displayCart();
+            }
+
+            displayCart();
+        });
+    </script> -->
+    <!-- cart.ejs -->
+
+    <script>
+        const cartContainer = document.querySelector('.cart-page table');
+        const totalElement = document.querySelector('.total-price td:last-child');
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function displayCartItems() {
+            cartContainer.innerHTML = '';
+            let totalPrice = 0;
+
+            cartItems.forEach(item => {
+                const row = document.createElement('tr');
+
+                const imgColumn = document.createElement('td');
+                const imgDiv = document.createElement('div');
+                const img = document.createElement('img');
+                img.src = item.image;
+                imgDiv.appendChild(img);
+                imgColumn.appendChild(imgDiv);
+
+                const infoColumn = document.createElement('td');
+                const infoDiv = document.createElement('div');
+                infoDiv.classList.add('cart-info');
+                const itemName = document.createElement('p');
+                itemName.textContent = item.name;
+                const priceInfo = document.createElement('small');
+                priceInfo.textContent = `Price: VNĐ ${item.price.toLocaleString()}`;
+                const removeLink = document.createElement('a');
+                removeLink.href = '#';
+                removeLink.textContent = 'Remove';
+                removeLink.addEventListener('click', () => removeItem(item));
+                infoDiv.appendChild(itemName);
+                infoDiv.appendChild(priceInfo);
+                infoDiv.appendChild(document.createElement('br'));
+                infoDiv.appendChild(removeLink);
+                infoColumn.appendChild(infoDiv);
+
+                const quantityColumn = document.createElement('td');
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.min = 1;
+                quantityInput.value = item.quantity;
+                quantityInput.name = 'qty';
+                quantityInput.addEventListener('change', () => updateQuantity(item, quantityInput.value));
+                quantityColumn.appendChild(quantityInput);
+
+                const subtotalColumn = document.createElement('td');
+                const subtotal = item.price * item.quantity;
+                subtotalColumn.textContent = `VNĐ ${subtotal.toLocaleString()}`;
+                totalPrice += subtotal;
+
+                row.appendChild(imgColumn);
+                row.appendChild(infoColumn);
+                row.appendChild(quantityColumn);
+                row.appendChild(subtotalColumn);
+
+                cartContainer.appendChild(row);
+            });
+
+            totalElement.textContent = `VNĐ ${totalPrice.toLocaleString()}`;
+        }
+
+        function removeItem(itemToRemove) {
+            cartItems = cartItems.filter(item => item.name !== itemToRemove.name);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            displayCartItems();
+        }
+
+        function updateQuantity(item, newQuantity) {
+            const selectedItem = cartItems.find(i => i.name === item.name);
+            selectedItem.quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            displayCartItems();
+        }
+
+        displayCartItems();
+    </script>
+
+</body>
+
+</html>

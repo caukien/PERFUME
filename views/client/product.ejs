@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products | RedStore</title>
+    <link rel="stylesheet" href="/client_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('./partials/navbar') %>
+    </div>
+
+    <!-- All Products -->
+
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>All Products</h2>
+            <select>
+                <option value="">Default</option>
+                <% catelist.forEach(index => { %> 
+                    <option value="<%= index._id %>"><%= index.name %></option>
+                <%}) %>
+            </select>
+        </div>
+        <div class="row">
+            <% if(data != ''){ 
+                data.forEach(element =>{%>
+                    <div class="col-4">
+                        <a href="/product/<%= element._id %>"><img src="http://localhost:3000/<%= element.image %>"></a>
+                        <h4><%= element.name%></h4>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p><%= element.price.toLocaleString()%> VND</p>
+                    </div>
+            <% })}else{ %>
+                <h1>NO DATA</h1>
+            <% } %>
+        </div>
+        <div class="page-btn">
+            <% if (data.length > 0) { %>
+                <nav aria-label="Dashboard Pagination">
+                <ul class="pagination justify-content-center mt-5">
+            
+                    <% if (current == 1) { %>
+                    <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+                    <% } else { %>
+                    <li class="page-item"><a href="?page=1" class="page-link">First</a></li>
+                    <% } %>
+            
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if(i !== 1) { %>
+                    <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                    <% } %>
+            
+                    <% for(; i <= (Number(current) + 4) && i <= pages; i++ ) { %>
+                    <% if (i == current) { %>
+                        <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>
+                    <% } else { %>
+                        <li class="page-item"><a href="?page=<%= i %>" class="page-link"><%= i %></a></li>
+                    <% } %>
+                    <% if (i == Number(current) + 4 && i < pages) { %>
+                        <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                    <% } %>
+                    <% } %>
+            
+                    <% if (current == pages) { %>
+                    <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>
+                    <% } else { %>
+                    <li class="page-item"><a href="?page=<%= pages %>" class="page-link">Last</a></li>
+                    <% } %>
+            
+                </ul>
+                </nav>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/footer') %>
+
+    <!-- javascript -->
+
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px"
+            }
+            else {
+                MenuItems.style.maxHeight = "0px"
+            }
+        }
+    </script>
+
+</body>
+
+</html>
