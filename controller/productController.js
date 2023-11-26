@@ -5,6 +5,9 @@ const fs = require('fs');
 
 
 exports.productController = {
+    /*
+    *Render len trang homepage
+    */
     get2homepage: async(req, res) =>{
         try {
             const randomSkip = Math.floor(Math.random() * 0.9);
@@ -20,9 +23,12 @@ exports.productController = {
             return res.send(error)
         }
     },
+    /*
+    *Render len trang client: product
+    */
     get2Product: async(req, res) =>{
         try {
-            let perPage = 4;
+            let perPage = 8;
             let page = req.query.page || 1;
             const count = await Product.countDocuments({});
             const products = await Product.find().skip(perPage * page - perPage)
@@ -45,9 +51,52 @@ exports.productController = {
             res.status(400).json({ error: error.message });
         }
     },
+    /*
+    *Hien thi SP theo hang
+    */
+    get2ProductbyCate: async(req, res) =>{
+        try {
+            let perPage = 8;
+            let page = req.query.page || 1;
+            const count = await Product.countDocuments({});
+            const { catename } = req.params
+            // if (catename === 'Default') {
+            //     // Truy vấn để lấy tất cả sản phẩm
+            //     const allProducts = await Product.find({}).skip(perPage * page - perPage)
+            //                                             .limit(perPage)
+            //                                             .exec();
+            //     return res.render('../views/client/product', { 
+            //         data: allProducts,
+            //         catelist: catelist,
+            //         current: page, 
+            //         // totalPages,
+            //         pages: Math.ceil(count / perPage),
+            //     });
+            // }
+            const category = await Cates.findOne({ name: catename });
+            if (!category) {
+                return res.status(404).json({ error: 'Category not found' });
+            }
+            const product = await Product.find({ cateid: category }).skip(perPage * page - perPage)
+                                                                        .limit(perPage)
+                                                                        .exec();
+            const catelist = await Cates.find();
+            res.render("../views/client/product", {
+                data: product,
+                catelist: catelist,
+                current: page, 
+                // totalPages,
+                pages: Math.ceil(count / perPage),
+            });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    },
     get2ProductId: async(req, res) =>{
         try {
-            const product = await Product.findById(req.params.id);
+            const product = await Product.findById(req.params.id)
+                                        .populate("cateid", ['name'])
+                                        .exec();
             const randomSkip = Math.floor(Math.random() * 0.9);
             const list = await Product.aggregate([
                 { $sample: { size: 8 } }, // Lấy ngẫu nhiên 8 bản ghi
@@ -79,6 +128,7 @@ exports.productController = {
             let page = req.query.page || 1;
             const count = await Product.countDocuments({});
             const products = await Product.find().populate("cateid", ['name'])
+                                                .sort({ createdAt: -1 })
                                                 .skip(perPage * page - perPage)
                                                 .limit(perPage)
                                                 .exec(); 
@@ -145,7 +195,7 @@ exports.productController = {
             }
             await newProduct.save();
             // res.status(201).json(savedProduct);
-            res.redirect("/getproduct");
+            res.redirect("/admin/getproduct");
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
@@ -190,7 +240,7 @@ exports.productController = {
             if (!updatedProduct) {
                 res.status(404).json({ message: 'Sản phẩm không tồn tại' });
             } else {
-                res.redirect('/getproduct')
+                res.redirect('/admin/getproduct')
             }
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -202,7 +252,7 @@ exports.productController = {
             if (!deletedProduct) {
                 return res.status(404).json({ message: 'Sản phẩm không tồn tại' });
             } else {
-                res.redirect('/getproduct')
+                res.redirect('/admin/getproduct')
             }
         } catch (error) {
             res.status(400).json({ error: error.message });

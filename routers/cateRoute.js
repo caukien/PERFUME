@@ -1,14 +1,14 @@
 const Routes = require("express").Router();
 const { cateController } = require('../controller/cateController.js');
 
-Routes.post('/createcate', cateController.postCate);
-Routes.get("/getcate", cateController.readCate);
-Routes.get("/getcate/:id", cateController.readCateid);
-Routes.put("/modifycate/:id", cateController.modiCate);
-Routes.delete("/deletecate/:id", cateController.deleteCate);
+Routes.post('/admin/postcate', cateController.postCate);
+Routes.get("/admin/getcate", cateController.readCate);
+Routes.get("/admin/getcate/:id", cateController.readCateid);
+Routes.put("/admin/modifycate/:id", cateController.modiCate);
+Routes.delete("/admin/deletecate/:id", cateController.deleteCate);
 
 //Get page
-Routes.get('/createcate', cateController.createCate)
-Routes.get('/modifycate/:id', cateController.modifyCate)
+Routes.get('/admin/createcate', cateController.createCate)
+Routes.get('/admin/modifycate/:id', cateController.modifyCate)
 
 module.exports = Routes;

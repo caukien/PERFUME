@@ -25,6 +25,7 @@
             </div>
             <div class="col-2">
                 <h1><%= data.name %></h1>
+                <h4>Hãng: <%= data.cateid.name %></h4>
                 <h4><%= data.price.toLocaleString() %> VNĐ</h4>
                 <h4>Capacity: <%= data.cap %> ML</h4>
                 <input type="number" value="1" name="qty">
@@ -32,7 +33,9 @@
 
                 <h3>Product Details <i class="fa fa-indent"></i></h3>
                 <br>
-                <p><%= data.des %></p>
+                <p class="description" data-fulltext="<%= data.des %>">
+                    <%= data.des.substring(0, 200) %>... <span class="more-link">More</span>
+                </p>
             </div>
         </div>
             <% }else{%>
@@ -107,22 +110,35 @@
             } else {
                 cart.push(item);
             }
-
             // Lưu danh sách sản phẩm đã cập nhật vào Local Storage
             localStorage.setItem('cart', JSON.stringify(cart));
-            // Hiển thị thông báo
-            if (Notification.permission !== 'denied') {
-                Notification.requestPermission().then(function (permission) {
-                    if (permission === 'granted') {
-                        new Notification('Success', {
-                            body: 'Product added to cart successfully!',
-                            // icon: 'path/to/your/icon.png' // Đường dẫn đến icon
-                        });
-                    }
-                });
-            }
         }
+
+        const descriptions = document.querySelectorAll('.description');
+
+        descriptions.forEach(description => {
+        const fullText = description.dataset.fulltext;
+        const maxLength = 200;
+
+        if (fullText.length > maxLength) {
+            description.innerHTML = fullText.substring(0, maxLength) + '<span class="more-dots">...</span><span class="more-content">' + fullText.substring(maxLength) + '</span><span class="more-link"> More</span>';
+        }
+
+        const moreLink = description.querySelector('.more-link');
+        const moreContent = description.querySelector('.more-content');
+
+        if (moreLink) {
+            moreLink.addEventListener('click', () => {
+            if (moreContent.style.display === 'inline') {
+                moreContent.style.display = 'none';
+                moreLink.innerText = ' More';
+            } else {
+                moreContent.style.display = 'inline';
+                moreLink.innerText = ' Less';
+            }
+            });
+        }
+        });
     </script>
 </body>
-</style>
 </html>

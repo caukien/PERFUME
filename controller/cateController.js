@@ -1,3 +1,4 @@
+const Cates = require('../models/cateModel');
 const Cate = require('../models/cateModel');
 const express = require('express');
 const router = express.Router();
@@ -18,7 +19,7 @@ exports.cateController = {
             })
             await category.save();
             // res.status(200).json({ success: true, data})
-            res.redirect('/getcate');
+            res.redirect('/admin/getcate');
         } catch (error) {
             res.status(500).json(error);
         }
@@ -28,14 +29,32 @@ exports.cateController = {
     //Read
     readCate: async(req, res) => {
         try {
-            let categorylist = await Cate.find();
-            if(!categorylist) {
-                res.status(500).json({success: false})
-            }
-            // res.status(200).send(categorylist);
-            res.render('../views/admin/cate/index', {
+            let perPage = 5;
+            let page = req.query.page || 1;
+            const count = await Cates.countDocuments({});
+            const categorylist = await Cate.find().sort({ createdAt: -1 })
+                                                .skip(perPage * page - perPage)
+                                                .limit(perPage)
+                                                .exec(); 
+            // if(!products){
+            //     res.status(400).json({message: "Không có sản phẩm" });
+            //     return;
+            // }
+            // res.status(200).json(products);
+            res.render("../views/admin/cate/index", {
                 data: categorylist,
-            })
+                current: page, 
+                // totalPages,
+                pages: Math.ceil(count / perPage),
+            });
+            // let categorylist = await Cate.find();
+            // if(!categorylist) {
+            //     res.status(500).json({success: false})
+            // }
+            // // res.status(200).send(categorylist);
+            // res.render('../views/admin/cate/index', {
+            //     data: categorylist,
+            // })
         } catch (error) {
             res.status(500).json(error);
         }
@@ -68,7 +87,7 @@ exports.cateController = {
             if(!item) {
                 res.status(400).send('Không sửa được!');
             }else{
-                res.redirect('/getcate');
+                res.redirect('/admin/getcate');
             }
         } catch (error) {
             res.status(500).json(error);
@@ -79,7 +98,7 @@ exports.cateController = {
         try {
             let item = await Cate.findByIdAndRemove(req.params.id)
             if(item) {
-                res.redirect("/getcate");
+                res.redirect("/admin/getcate");
                 // return res.status(200).json({success: true, message: 'Đã xóa!'})
             }else {
                 console.log('Danh mục đã được không xóa thành công.');

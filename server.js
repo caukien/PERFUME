@@ -40,11 +40,11 @@ app.use('/orderdetail', orderDetailRoute);
 
 
 
-app.get('/admin', (req, res) => {
-    // console.log(req);
-    // return res.status(234).send('QUAY LAI DE BAN EI')
-    res.render('../views/admin/login')
-})
+// app.get('/admin', (req, res) => {
+//     // console.log(req);
+//     // return res.status(234).send('QUAY LAI DE BAN EI')
+//     res.render('../views/admin/login')
+// })
 // app.get('*', (req, res) => {
 //     console.log(req);
 //     // return res.status(234).send('QUAY LAI DE BAN EI')

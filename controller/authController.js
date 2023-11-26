@@ -4,6 +4,7 @@ const cookie = require("cookie-parser");
 const dotenv = require("dotenv");
 const session = require('express-session');
 const User = require("../models/userModel.js");
+const { render } = require("ejs");
 
 let refreshTokens = [];
 dotenv.config();
@@ -11,6 +12,17 @@ dotenv.config();
 
 
 exports.authController = {
+  /*
+  * Login form
+  */
+getloginform: async(req, res) =>{
+  try {
+    res.render('../views/admin/login');
+  } catch (error) {
+    return res.status(500).json(err);
+  }
+},
+
   /*
    * Register
    */
@@ -91,7 +103,7 @@ exports.authController = {
               // req.session.userId = check._id;
               res.render("../views/admin/home",{userid: check});
             }else{
-              return res.send('Quay ra đi bạn')
+              res.render('../views/admin/login');
             }
           }
         } catch (error) {

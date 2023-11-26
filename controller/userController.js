@@ -8,7 +8,7 @@ exports.userController = {
 
   getAllUser: async (req, res) => {
     try {
-      let perPage = 2;
+      let perPage = 5;
       let page = req.query.page || 1;
       const count = await User.countDocuments({});
       const data = await User.find()
@@ -48,7 +48,7 @@ exports.userController = {
       if (!data) {
         return res.status(404).json("User not found!");
       }else{
-        res.redirect("/getuser")
+        res.redirect("/admin/getuser")
       }
     } catch (error) {
       res.status(500).json(error);

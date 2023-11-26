@@ -27,7 +27,7 @@
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src="images/buy-1.jpg">
+                        <img src="">
                         <div>
                             <p>Red Printed T-Shirt</p>
                             <small>Price: VNĐ 50.00</small>
@@ -47,9 +47,17 @@
                     <td>VNĐ 0</td>
                 </tr>
             </table>
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_cart">
+                <input type="hidden" name="business" value="jultranet-facilitator@gmail.com">
+                <input type="hidden" name="item_name" value="Item Name">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="amount" value="0.00">
+                <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+            </form>
         </div>
+        <button class="btn" onclick="Checkout()">Check out</button>
     </div>
-
     <!-- Footer -->
     <%- include('./partials/footer') %>
 
@@ -67,78 +75,7 @@
             }
         }
     </script>
-    <!-- Get items in local -->
-    <!-- Đoạn mã trong file cart.ejs -->
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Lấy table để hiển thị danh sách sản phẩm trong giỏ hàng
-            const cartTable = document.querySelector('table');
-            const totalPrice = document.querySelector('.total-price td:last-child');
-
-            function displayCart() {
-                // Xóa hết các sản phẩm đã hiển thị trước đó để cập nhật
-                cartTable.innerHTML = `
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                `;
-
-                let total = 0;
-
-                // Hiển thị các sản phẩm từ Local Storage lên trang
-                cartItems.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>
-                            <div class="cart-info">
-                                <img src="${item.image}">
-                                <div>
-                                    <p>${item.name}</p>
-                                    <small>Price: VNĐ ${item.price.toFixed(2)}</small>
-                                    <br>
-                                    <a href="#" onclick="removeItem('${item.name}')">Remove</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td><input type="number" value="${item.quantity}" name="qty" onchange="updateSubtotal(event, '${item.name}', ${item.price})"></td>
-                        <td>VNĐ ${(item.price * item.quantity).toFixed(2)}</td>
-                        <td><button onclick="removeItem('${item.name}')">Remove</button></td>
-                    `;
-                    cartTable.appendChild(row);
-
-                    total += item.price * item.quantity;
-                });
-
-                // Hiển thị tổng số tiền
-                totalPrice.textContent = `VNĐ ${total.toLocaleString()}`;
-            }
-
-            function removeItem(name) {
-                const updatedCart = cartItems.filter(item => item.name !== name);
-                localStorage.setItem('cart', JSON.stringify(updatedCart));
-                displayCart();
-            }
-
-            function updateSubtotal(event, name, price) {
-                const newQuantity = parseInt(event.target.value);
-                cartItems.forEach(item => {
-                    if (item.name === name) {
-                        item.quantity = newQuantity;
-                    }
-                });
-
-                localStorage.setItem('cart', JSON.stringify(cartItems));
-                displayCart();
-            }
-
-            displayCart();
-        });
-    </script> -->
-    <!-- cart.ejs -->
+    
 
     <script>
         const cartContainer = document.querySelector('.cart-page table');
@@ -213,10 +150,13 @@
             localStorage.setItem('cart', JSON.stringify(cartItems));
             displayCartItems();
         }
-
+        
         displayCartItems();
+        function Checkout(){
+            localStorage.removeItem('cart');
+            window.location.reload()
+        }
     </script>
-
 </body>
 
 </html>

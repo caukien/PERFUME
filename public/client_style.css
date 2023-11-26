@@ -502,3 +502,10 @@ form a{
         display: none;
     }
 }
+.more-content {
+    display: none;
+}
+.more-link {
+    cursor: pointer;
+    color: rgb(255, 72, 0);
+}
