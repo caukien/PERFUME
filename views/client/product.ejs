@@ -12,6 +12,11 @@
 </head>
 
 <body>
+    <%- include('./partials/loader') %>
+    <!-- <div class="center">
+        <div class="ring"></div>
+        <span>loading...</span>
+    </div> -->
     <div class="container">
         <%- include('./partials/navbar') %>
     </div>
@@ -115,14 +120,14 @@
         //         window.location.href = `/${selectedCategory}`;
         //     });
         // });
-        function redirectToCategory() {
-            const selectElement = document.getElementById('categorySelect');
-            const selectedCategory = selectElement.value;
+        // function redirectToCategory() {
+        //     const selectElement = document.getElementById('categorySelect');
+        //     const selectedCategory = selectElement.value;
 
-            if (selectedCategory !== 'Default') {
-                window.location.href = `/${selectedCategory}`;
-            }
-        }
+        //     if (selectedCategory !== 'Default') {
+        //         window.location.href = `/${selectedCategory}`;
+        //     }
+        // }
     </script>
 </body>
 

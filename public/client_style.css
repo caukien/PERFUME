@@ -509,3 +509,43 @@ form a{
     cursor: pointer;
     color: rgb(255, 72, 0);
 }
+.loader {
+    position: absolute;
+    min-height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3e3e3;
+    transition: opacity 2s, visibility 1s;
+}
+.loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader::after {
+    content: "";
+    width: 200px;
+    height: 200px;
+    /* border: 15px solid #dddddd; */
+    /* border-top-color: #ff523b; */
+    border-radius: 50%;
+    animation: loading 2s linear infinite;
+}
+@keyframes loading {
+    0%{
+        transform: rotate(0deg);
+        box-shadow: 1px 5px 2px rgb(255, 72, 0);
+    }
+    50%{
+        transform: rotate(180deg);
+        box-shadow: 1px 5px 2px rgb(255, 72, 0);
+    }
+    100%{
+        transform: rotate(360deg);
+        box-shadow: 1px 5px 2px rgb(255, 72, 0);
+    }
+}

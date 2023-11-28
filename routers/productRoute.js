@@ -26,6 +26,6 @@ routes.get('/admin/modifyproduct/:id', productController.modifyProduct)
 routes.get('/index', productController.get2homepage)
 routes.get('/product', productController.get2Product);
 routes.get('/product/:id', productController.get2ProductId);
-routes.get('/:catename', productController.get2ProductbyCate);
+// routes.get('/:catename', productController.get2ProductbyCate);
 
 module.exports = routes;
