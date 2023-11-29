@@ -149,7 +149,7 @@ exports.productController = {
     },
     getProductId: async(req, res) =>{
         try {
-            const product = await Product.findById(req.params.id).populate("cateid", ['name']);
+            const product = await Product.findById(req.params.id).populate("cateid", 'name');
             if (!product) {
                 res.status(404).json({ message: 'Sản phẩm không tồn tại' });
             } else {

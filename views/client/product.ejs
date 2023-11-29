@@ -120,14 +120,14 @@
         //         window.location.href = `/${selectedCategory}`;
         //     });
         // });
-        // function redirectToCategory() {
-        //     const selectElement = document.getElementById('categorySelect');
-        //     const selectedCategory = selectElement.value;
+        function redirectToCategory() {
+            const selectElement = document.getElementById('categorySelect');
+            const selectedCategory = selectElement.value;
 
-        //     if (selectedCategory !== 'Default') {
-        //         window.location.href = `/${selectedCategory}`;
-        //     }
-        // }
+            if (selectedCategory !== 'Default') {
+                window.location.href = `/product/brand/${selectedCategory}`;
+            }
+        }
     </script>
 </body>
 

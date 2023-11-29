@@ -508,6 +508,10 @@ form a{
 .more-link {
     cursor: pointer;
     color: rgb(255, 72, 0);
+    transition: color 0.5s;
+}
+.more-link:hover{
+    color: #563434;
 }
 .loader {
     position: absolute;
@@ -548,4 +552,10 @@ form a{
         transform: rotate(360deg);
         box-shadow: 1px 5px 2px rgb(255, 72, 0);
     }
+}
+.brand-hover{
+    transition: color 0.5s ease-in-out;
+}
+.brand-hover:hover{
+    color: rgb(255, 72, 0);
 }
