@@ -35,7 +35,7 @@
                 <h3>Product Details <i class="fa fa-indent"></i></h3>
                 <br>
                 <p class="description" data-fulltext="<%= data.des %>">
-                    <%= data.des.substring(0, 200) %>... <span class="more-link">More</span>
+                    <%= data.des.substring(0, 200) %> <span class="more-link">More</span>
                 </p>
             </div>
         </div>
@@ -122,7 +122,7 @@
         const maxLength = 200;
 
         if (fullText.length > maxLength) {
-            description.innerHTML = fullText.substring(0, maxLength) + '<span class="more-dots">...</span><span class="more-content">' + fullText.substring(maxLength) + '</span><span class="more-link"> More</span>';
+            description.innerHTML = fullText.substring(0, maxLength) + '<span class="more-dots"></span><span class="more-content">' + fullText.substring(maxLength) + '</span><span class="more-link"> More</span>';
         }
 
         const moreLink = description.querySelector('.more-link');

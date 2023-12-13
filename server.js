@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 const cookieParser = require("cookie-parser");
 const exLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
+const session = require('./middleware/session.js')
 
 const authorRouter = require("./routers/authRoute");
 const userRoute = require("./routers/userRoute");
@@ -23,7 +24,7 @@ app.use(methodOverride('_method'));
 // app.set('layout', './admin/home')
 app.set("view engine", "ejs");
 app.use(express.json());
-
+app.use(session.sessionMiddleware)
 app.use(cookieParser());
 app.use('/image', express.static('image'));
 app.use(express.static('public'));

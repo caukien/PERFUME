@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>ADMIN</title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('../partials/sidebar') %>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              <div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Chỉnh sửa: <%= product.name %></h1>
+                <div class="btn-toolbar mb-2 mb-md 0">
+                  
+                </div>
+              </div>
+              
+              <div class="col py-3">
+                <div class="row">
+                  <div class="col">
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/getproduct">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><%= product.name %></li>
+                      </ol>
+                    </nav>
+                  </div>
+                </div>
+              
+              </div>
+              
+              
+              <form action="/admin/updateproduct/<%= product._id %>?_method=PUT"" method="POST" enctype="multipart/form-data">
+              
+                <div class="row form-group mb-4">
+                  <div class="col">
+                    <label for="">Tên sản phẩm</label>
+                    <input type="text" class="form-control" id="" name="name" value="<%= product.name %>"  required>
+                  </div>
+              
+                  <div class="col">
+                    <label for="">Giá</label>
+                    <input type="text" class="form-control" id="" name="price" value="<%= product.price %>" required>
+                  </div>
+                </div>
+              
+                <div class="row form-group mb-4">
+                  <div class="col">
+                    <label for="">Danh mục</label>
+                        <select class="form-select" aria-label="Default select example" name="cateid">
+                          <% array.forEach(element => { %>
+                            <option value="<%= element._id %>"> <%= element.name %> </option>
+                          <% }); %>
+                      </select>
+                  </div>
+              
+                  <div class="col">
+                    <label for="">Số lượng</label>
+                    <input type="number" class="form-control" id="" name="qty" value="<%= product.qty %>" required>
+                  </div>
+                </div>
+            
+                <div class="row form-group mb-4">
+                  <div class="col">
+                    <label for="">Ảnh</label>
+                    <input type="file" class="form-control" id="image" name="image" value="">
+                  </div>
+                  <div class="col">
+                    <img src="http://localhost:3000/<%= product.image %>" alt="<%=product.name  %>" class="image-thumbnail mt-1" height="100">
+                    <input type="hidden" name="old_image" id="" value="http://localhost:3000/<%= product.image %>">
+                  </div>
+                  <div class="col">
+                    <label for="">Dung tích</label>
+                    <input type="number" class="form-control" id="" name="cap" value="<%= product.cap %>" required>
+                  </div>
+                </div>
+            
+                <div class="row form-group mb-4">
+                    <div class="col">
+                      <label for="">Mô tả</label>
+                      <textarea type="text" class="form-control" rows="3" id="" name="des" value="" required><%= product.des %></textarea>
+                    </div>
+                    
+                </div>
+              
+                <div class="form-group mb-4">
+                  <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </div>
+            
+            </form>
+            </main> 
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>

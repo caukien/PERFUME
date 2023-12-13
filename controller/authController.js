@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie-parser");
 const dotenv = require("dotenv");
-const session = require('express-session');
+const session = require('../middleware/session.js');
 const User = require("../models/userModel.js");
 const { render } = require("ejs");
 
@@ -18,6 +18,13 @@ exports.authController = {
 getloginform: async(req, res) =>{
   try {
     res.render('../views/admin/login');
+  } catch (error) {
+    return res.status(500).json(err);
+  }
+},
+loginform4user: async(req, res) =>{
+  try {
+    res.render('../views/client/account');
   } catch (error) {
     return res.status(500).json(err);
   }
@@ -85,7 +92,6 @@ getloginform: async(req, res) =>{
    */
   signinUser: async (req, res) =>{
         try {
-          console.log(req.body)
           const check = await User.findOne({ username: req.body.username });
           if (!check) {
             return res.send("User name cannot found")
@@ -96,11 +102,9 @@ getloginform: async(req, res) =>{
             return res.send("wrong Password");
           }
           else {
-            // res.render("../views/admin/home",{userid: check});
-            // res.send("Pass")
             if(check.isAdmin === true){
-              // req.session.isAdmin = true;
-              // req.session.userId = check._id;
+              req.session.
+              req.session.isAuth = true;
               res.render("../views/admin/home",{userid: check});
             }else{
               res.render('../views/admin/login');
@@ -204,6 +208,7 @@ getloginform: async(req, res) =>{
     try {
       // res.clearCookie("refreshToken");
       // res.status(200).json({ success: true, message: "Logout successfully" });
+      req.session.destroy();
       res.render("../views/admin/login");
     } catch (error) {
       res.status(500).json(error);
